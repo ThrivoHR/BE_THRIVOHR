@@ -1,0 +1,6 @@
+@ThrivoHR.API_HostAddress = http://localhost:5074
+
+GET {{ThrivoHR.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

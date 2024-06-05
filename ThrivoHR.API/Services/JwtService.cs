@@ -1,0 +1,43 @@
+﻿using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+
+namespace ThrivoHR.API.Services
+{
+    public class JwtService
+    {
+        public class Token
+        {
+            public required string AccessToken { get; set; }
+            public required string RefreshToken { get; set; }
+        }
+        public Token CreateToken(int ID, string roles, string refreshToken)
+        {
+            var claims = new List<Claim>
+            {
+
+                new(JwtRegisteredClaimNames.Sub, ID.ToString()),
+                new(ClaimTypes.Role, roles.ToString())
+            };
+
+
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Deer Coffee Shop @PI 123abc456 anh iu em"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                 issuer: "https://deercoffeesystem.azurewebsites.net/",
+                 audience: "api",
+                claims: claims,
+                expires: DateTime.Now.AddYears(1),
+                signingCredentials: creds);
+            var re = new Token
+            {
+                AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
+                RefreshToken = refreshToken
+            };
+            return re;
+        }
+    }
+}
