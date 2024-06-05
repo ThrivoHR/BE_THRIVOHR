@@ -27,10 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ThrivoHR.Application\ThrivoHR.Application.csproj" />
     <ProjectReference Include="..\ThrivoHR.Domain\ThrivoHR.Domain.csproj" />
     <ProjectReference Include="..\ThrivoHR.Infrastructure\ThrivoHR.Infrastructure.csproj" />
