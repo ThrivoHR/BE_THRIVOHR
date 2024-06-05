@@ -1,0 +1,35 @@
+name: Build .NET 8 Project
+
+on:
+  push:
+    branches:
+      - dev  # Trigger on pushes to the dev branch
+
+jobs:
+  build:
+    runs-on: windows-latest  # Or your preferred build environment (e.g., ubuntu-latest)
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Ensure all history is fetched for versioning
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'  # Or the exact version you're using
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Project
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run Tests (Optional)
+        run: dotnet test --no-restore --verbosity normal
+
+      # Additional Steps (Optional):
+      # - Publish Artifacts (dotnet publish)
+      # - Deploy to Staging/Production
+      # - Notify Team (e.g., Slack, email)
