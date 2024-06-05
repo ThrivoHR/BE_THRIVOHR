@@ -34,7 +34,6 @@ jobs:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
-          
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -55,4 +54,4 @@ jobs:
           app-name: 'BE-ThrivoHR'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3B6B3F43F97E49DCA996848C079A880C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1ECFBC362B3B40B39CA2E80E7AB08C03 }}
